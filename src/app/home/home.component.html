@@ -1,0 +1,179 @@
+<div class="wrapper">
+    <div class="one">
+        <h2 style="color: Black; margin-left: 20px; margin-top: 20px;">Windows Server Stats</h2>
+        <div class="charts">
+            <ngx-charts-pie-chart 
+                [results]="saleData"
+                [legend]="true"
+                [legendTitle]="'Product Sale Report'" 
+                [view]="[1000,300]"
+                [labels]="true" >
+            </ngx-charts-pie-chart>
+        </div>
+    </div>
+    <div class="three">
+
+      <div class="col-md-6">
+        <h2 class="text-center" style="color: black; margin-left: 20px; margin-top: 20px;">Add Exclusion</h2>
+      <form>
+        <div class="form-group">
+          <label for="ipAddress" class="form-host">Rule Name: </label>
+          <input placeholder="eg: SQL Servers" [(ngModel)]="exclusion.ipAddress" name="ipAddress" class="form-control" id="ipAddress" style="margin-left:42px;">
+        </div>
+        <div class="form-group">
+          <label for="hostName" class="form-host" >Host Name(s): </label>
+          <input placeholder="eg: host1100, host1001" [(ngModel)]="exclusion.host" name="hostName" class="form-control" id="hostName" style="margin-left:20px;">
+        </div>
+        
+      
+        <div class="form-group">
+          <label for="Folder Path" class="form-host">Folder Path: </label>
+          <input    placeholder="eg: C:\Program Files\Java" [(ngModel)]="exclusion.folderPath"  name="folderPath" class="form-control" id="folderPath">
+        </div>
+      
+        <button class="form-btn" (click)="saveExclusion()">Add</button>
+      </form>
+      </div>
+    </div>
+    <div class="two">
+
+      <div class="temp">
+        <div class="two-title">
+          
+        <h2 style="color: Black; margin-left: 20px; margin-top: 20px;">Asset Report</h2> 
+        </div>
+        <div class="searchbar" >
+          <!-- <mat-form-field class="example-full-width" style="color: black;" >
+            <span matPrefix> </span>
+            <input type="tel" matInput placeholder="Search" name= "search" [(ngModel)]= "search">
+            <button matSuffix mat-button><mat-icon style="color: black;" >search</mat-icon></button>
+            </mat-form-field> -->
+            
+              <form class="searchbar-form">
+                <input class="searchbar-input" type="search" placeholder="Search with Host Name to filter" aria-label="Search">
+                <button class="searchbtn" type="submit">Search</button>
+              </form>
+            
+        </div>
+        </div>
+            <div class ="cards-holder">
+              <div>
+                <p style="color: black; " class="table-column-names">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hostname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AntivirusEnabled &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AntispywareEnabled&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AntivirusSignatureLastUpdated&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AntivirusSignatureVersion</p>
+              </div>
+              <div class = "rows" *ngFor="let host of hosts">
+
+                <!-- <div>
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+                  <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+                    <th mat-header-cell *matHeaderCellDef>
+                      {{column.header}}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      {{column.cell(row)}}
+                    </td>
+                  </ng-container>
+                
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                </div> -->
+                <!-- </div> -->
+                <div class = "panels">
+                <mat-accordion>
+                  <mat-expansion-panel (opened)="panelOpenState = true"
+                                       (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{host.hostName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        {{host.antivirusEnabled}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{host.antispywareEnabled}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{host.antivirusSignatureLastUpdated}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{host.antivirusSignatureVersion}}
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>
+                      AntispywareEnabled: {{host.antispywareEnabled}}<br>
+                      AntispywareSignatureAge: {{host.antispywareSignatureAge}}<br>
+                      AntispywareSignatureLastUpdated: {{host.antispywareSignatureLastUpdated}}<br>
+                      AntispywareSignatureVersion: {{host.antispywareSignatureVersion}}<br>
+                      AntivirusSignatureAge: {{host.antivirusSignatureAge}}<br>
+                      AntivirusSignatureLastUpdated: {{host.antivirusSignatureLastUpdated}}<br>
+                      AntivirusSignatureVersion: {{host.antivirusSignatureVersion}}<br>
+                      BehaviorMonitorEnabled: {{host.behaviorMonitorEnabled}}<br>
+                      ComputerID: {{host.computerID}}</p>
+                  </mat-expansion-panel>
+                </mat-accordion>
+                </div>
+              
+                
+            <!-- <div class = "rows" *ngFor="let host of hosts">
+                <mat-card class="example-card" >
+                    <mat-card-title>{{host.hostName}}</mat-card-title>
+                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                    <mat-card-content>
+                      <p>AntispywareEnabled: {{host.antispywareEnabled}}<br>
+                        AntispywareSignatureAge: {{host.antispywareSignatureAge}}<br>
+                        AntispywareSignatureLastUpdated: {{host.antispywareSignatureLastUpdated}}<br>
+                        AntispywareSignatureVersion: {{host.antispywareSignatureVersion}}<br>
+                        AntivirusEnabled: {{host.antivirusEnabled}}<br>
+                        AntivirusSignatureAge: {{host.antivirusSignatureAge}}<br>
+                        AntivirusSignatureLastUpdated: {{host.antivirusSignatureLastUpdated}}<br>
+                        AntivirusSignatureVersion: {{host.antivirusSignatureVersion}}<br>
+                        BehaviorMonitorEnabled: {{host.behaviorMonitorEnabled}}<br>
+                        ComputerID: {{host.computerID}}</p>
+                    </mat-card-content>
+                    <div class="col-md-6">
+                        <h2 class="text-center">Add Exclusion</h2>
+                      <form>
+                        <div class="form-group">
+                          <label for="ipAddress">Ip Address</label>
+                          <input type="text">
+                          <input [(ngModel)]="exclusion.ipAddress" name="ipAddress" class="form-control" id="ipAddress">
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="Folder Path">Folder Path</label>
+                          <input type="text">
+                          <input [(ngModel)]="exclusion.folderPath"  name="folderPath" class="form-control" id="folderPath">
+                        </div>
+                      
+                        <button class="btn btn-success" (click)="saveExclusion()">Create</button>
+                      </form>
+                      </div>
+                    <mat-card-actions>
+                      <button mat-button>LIKE</button>
+                      <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                  </mat-card>
+
+            </div> -->
+
+        </div>
+        </div>
+
+        
+
+
+          <!-- <div class="container">
+            <div class="row">
+              <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
+                <mdb-card>
+                  <mdb-card-img [src]="card.img" alt="Card image cap">
+                  </mdb-card-img>
+                  <mdb-card-body>
+                    <mdb-card-title>
+                      <h4>{{card.title}}</h4>
+                    </mdb-card-title>
+          
+                    <mdb-card-text>
+                      {{card.description}}
+                    </mdb-card-text>
+          
+                    <button mdbBtn color="primary">{{card.buttonText}}</button>
+                  </mdb-card-body>
+                </mdb-card>
+              </div>
+            </div>
+          </div> -->
+    </div>
+    
+  

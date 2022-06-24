@@ -1,0 +1,135 @@
+.wrapper {
+    display: grid;
+    // grid-template-columns: repeat(2, 1fr);
+    // grid-auto-rows: 150px;
+    gap: 17px;
+    padding: 20px;
+  }
+
+  .one {
+    background-color: white;
+    // grid-column-start: 1;
+    // grid-column-end: 4;
+    // grid-row-start: 1;
+    // grid-row-end: 3;
+    height: 25rem;
+  }
+
+  .charts{
+    width: 100%;
+    height:100%;
+  }
+  .advanced-pie-legend .legend-items-container .legend-items {
+    height:70px !important;
+    overflow: none !important;
+}
+.advanced-pie-legend .legend-items-container .legend-items .chart-legend .legend-title-text{
+    color:black !important;
+}
+
+  .two {
+    background-color: white;
+    // grid-column-start: 1;
+    // grid-column-end: 4;
+    // grid-row-start: 3;
+    // grid-row-end: 5;
+    height:auto;
+    padding-bottom: 20px;
+    width:100%;
+  }
+
+  .three {
+    background-color: white;
+    // grid-column-start: 1;
+    // grid-column-end: 4;
+    // grid-row-start: 3;
+    // grid-row-end: 5;
+    height:auto;
+    padding-bottom: 20px;
+    width:100%;
+  }
+
+  .form-host {
+    color:black;
+    margin-left: 5rem;
+    padding-bottom: 10px;
+    font-size: large;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .form-control {
+    height:25px;
+    width: 20rem;
+    margin-left:40px;
+  }
+
+  .form-btn {
+    margin-left:25rem;
+    height:30px;
+    width:70px;
+    background-color: #404040;
+    color: #ffe6ff;
+  }
+
+
+  .temp {
+    display: flex;
+  }
+
+  .searchbar {
+     margin-left: 20px; 
+     margin-top: 25px;
+    
+  }
+
+  .searchbar-input {
+    height: 30px;
+    // border-radius: 4px;
+    width: 30rem;
+  }
+
+  .searchbtn {
+    height: 30px;
+    width: 5rem;
+    color:white;
+    background-color: #404040;
+    border-radius: 4px;
+  }
+
+  // .cards-holder {
+  //   display: flex;
+
+  // }
+  .rows {
+    
+    max-width:400px;
+    
+
+  }
+
+  .table-column-names {
+    font-size: 20px;
+    font-weight: 500;
+
+  }
+
+  .panels {
+    margin-left: 5rem;
+    width: 75rem;
+    
+    margin-top: 5px;
+  }
+
+  .example-card {
+margin:20px;
+    max-width: 500px;
+
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
